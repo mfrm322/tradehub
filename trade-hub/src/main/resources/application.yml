@@ -1,0 +1,67 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: tradehub
+  datasource:
+    url: jdbc:mysql://localhost:3306/tradehub?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    # JPA 配置（开发阶段用）
+  jpa:
+    hibernate:
+      ddl-auto: update                # 开发时自动创建/更新表结构
+    show-sql: true
+
+mybatis-plus:
+  type-aliases-package: com.example.tradehub.entity.pojo
+  global-config:
+    db-config:
+      id-type: auto           # 主键自增
+      update-strategy: not_null   # 只更新非 null 字段
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl   # 打印 SQL 日志
+
+
+# 日志级别
+logging:
+  level:
+    com.tradehub: debug
+
+
+# Swagger / OpenAPI 配置
+springdoc:
+  api-docs:
+    path: /api-docs          # 接口文档 JSON 地址
+    enabled: true
+  swagger-ui:
+    path: /swagger-ui.html   # Swagger 可视化界面地址
+    enabled: true
+    tags-sorter: alpha       # 按字母排序
+    operations-sorter: method
+    try-it-out-enabled: true # 允许在线测试接口
+
+  # 可选：只扫描指定包下的接口（推荐加上，防止扫描到无关接口）
+  packages-to-scan: com.example.tradehub.controller
+
+# ==================== Knife4j + SpringDoc 配置 ====================
+
+knife4j:
+  enable: true
+  setting:
+    language: zh-CN                    # 中文界面
+    enable-swagger-models: true
+  basic:
+    enable: false                      # 生产环境建议改成 true，增加文档密码保护
+
+# JWT 配置
+jwt:
+  secret: tradehub-jwt-secret-key-must-be-32-characters
+  expiration: 7200000  # token 过期时间（毫秒），这里是 2 小时
+  header: Authorization
+  prefix: "Bearer "
+  admin-token-name: token
+  user-token-name: token
+
