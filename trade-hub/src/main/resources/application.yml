@@ -3,10 +3,12 @@ server:
 spring:
   application:
     name: tradehub
+  profiles:
+    active: local  # 激活本地开发配置
   datasource:
-    url: jdbc:mysql://localhost:3306/tradehub?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
-    username: root
-    password: 123456
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:tradehub}?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&useSSL=false
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:your-password}
     driver-class-name: com.mysql.cj.jdbc.Driver
 
     # JPA 配置（开发阶段用）
@@ -58,7 +60,7 @@ knife4j:
 
 # JWT 配置
 jwt:
-  secret: tradehub-jwt-secret-key-must-be-32-characters
+  secret: ${JWT_SECRET:your-jwt-secret-key-must-be-at-least-32-characters-long}
   expiration: 7200000  # token 过期时间（毫秒），这里是 2 小时
   header: Authorization
   prefix: "Bearer "
