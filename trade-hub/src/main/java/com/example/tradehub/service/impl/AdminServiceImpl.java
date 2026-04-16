@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.tradehub.constant.MessageConstant;
 import com.example.tradehub.constant.StatusConstant;
 import com.example.tradehub.entity.dto.AdminLoginDTO;
+import com.example.tradehub.entity.dto.AdminRegisterDTO;
 import com.example.tradehub.entity.pojo.User;
 
 import com.example.tradehub.exception.AccountLockedException;
@@ -60,8 +61,34 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, User> implements 
         if (StatusConstant.DISABLE.equals(user.getStatus())) {
             throw new AccountLockedException(MessageConstant.ACCOUNT_LOCKED);
         }
-
         //返回这个这个用户对象
+        return user;
+    }
+
+
+
+    //用户注册
+    @Override
+    public User register(AdminRegisterDTO adminRegisterDTO) {
+        String username = adminRegisterDTO.getUsername();
+        String password = adminRegisterDTO.getPassword();
+
+        //1、查询当前用户名是否已经存在
+        User existUser = adminMapper.selectOne(new LambdaQueryWrapper<User>()
+                .eq(User::getUsername, username));
+        //2、如果已经存在，抛出异常
+        if (existUser != null) {
+            throw new RuntimeException(MessageConstant.USER_EXIST);
+        }
+
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(passwordEncoder.encode(password));
+        user.setAvatar("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiEFJ_wTKQQIFuw3jKvZn0L_2YhqrcY596RQ&s");
+        user.setRole("ADMIN");
+        user.setStatus(StatusConstant.ENABLE);
+
+        adminMapper.insert(user);
         return user;
     }
 }

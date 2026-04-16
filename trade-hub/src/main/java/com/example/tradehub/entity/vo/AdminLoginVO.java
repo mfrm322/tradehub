@@ -15,9 +15,6 @@ public class AdminLoginVO {
     //用户名
     private String username;
 
-    //姓名
-    private String name;
-
     //jwt令牌
     private String token;
 }
