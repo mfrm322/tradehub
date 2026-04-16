@@ -11,10 +11,7 @@ import com.example.tradehub.service.AdminService;
 import com.example.tradehub.utils.JwtUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,5 +43,10 @@ public class AdminController {
         adminRegisterVO.setUsername(user.getUsername());
 
         return Result.success(adminRegisterVO);
+    }
+
+    @GetMapping("/id")
+    public Result<User> getById(@RequestParam Long id){
+        return Result.success(adminService.getById(id));
     }
 }
