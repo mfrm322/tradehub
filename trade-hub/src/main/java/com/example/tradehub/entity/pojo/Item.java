@@ -17,7 +17,7 @@ public class Item {
     private String title;              //商品标题
     private Double price;             //商品价格
     private String description;      //商品描述
-    private String image;           //商品图片
+    private String images;           //商品图片
     private Long userId;           //商品所属用户
     private Long categoryId;      //商品所属分类
     private Integer status;      //商品状态 0:待审核 1:已上架 2:已下架 3:已售出

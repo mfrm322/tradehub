@@ -109,7 +109,7 @@ public class AdminServiceImpl extends ServiceImpl<AdminMapper, User> implements 
         //添加排序条件
         queryWrapper.orderByDesc(User::getCreateTime);
         Page<User> resultPage = adminMapper.selectPage(userPage, queryWrapper);
-        return new PageResult(resultPage.getTotal(), resultPage.getRecords());
+        return new PageResult<>(resultPage.getTotal(), resultPage.getRecords());
 
     }
 
