@@ -6,11 +6,10 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.example.tradehub.constant.MessageConstant;
 import com.example.tradehub.entity.pojo.Item;
-import com.example.tradehub.entity.pojo.User;
 import com.example.tradehub.exception.ItemNoFoundException;
-import com.example.tradehub.mapper.ItemMapper;
+import com.example.tradehub.mapper.AdminItemMapper;
 import com.example.tradehub.result.PageResult;
-import com.example.tradehub.service.ItemService;
+import com.example.tradehub.service.AdminItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -19,9 +18,9 @@ import org.springframework.util.StringUtils;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class ItemServiceImpl extends ServiceImpl<ItemMapper, Item> implements ItemService  {
+public class AdminItemServiceImpl extends ServiceImpl<AdminItemMapper, Item> implements AdminItemService {
 
-    private final ItemMapper itemMapper;
+    private final AdminItemMapper itemMapper;
     @Override
     public void onShelf(Long id) {
         //1.查询商品是否存在

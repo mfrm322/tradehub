@@ -5,7 +5,7 @@ package com.example.tradehub.controller;
 import com.example.tradehub.entity.pojo.Item;
 import com.example.tradehub.result.PageResult;
 import com.example.tradehub.result.Result;
-import com.example.tradehub.service.ItemService;
+import com.example.tradehub.service.AdminItemService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AdminItemController {
 
-    private final ItemService itemService;
+    private final AdminItemService itemService;
 
     @PutMapping("/on-shelf/{id}")
     @Operation(summary = "管理员审核商品通过并上架")

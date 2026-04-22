@@ -5,5 +5,5 @@ import com.example.tradehub.entity.pojo.ItemCategory;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
-public interface ItemCategoryMapper extends BaseMapper<ItemCategory> {
+public interface AdminItemCategoryMapper extends BaseMapper<ItemCategory> {
 }

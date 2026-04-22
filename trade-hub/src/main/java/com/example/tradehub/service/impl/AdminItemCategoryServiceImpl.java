@@ -8,19 +8,19 @@ import com.example.tradehub.entity.dto.ItemCategoryDTO;
 import com.example.tradehub.entity.pojo.Item;
 import com.example.tradehub.entity.pojo.ItemCategory;
 import com.example.tradehub.exception.BaseException;
-import com.example.tradehub.mapper.ItemCategoryMapper;
-import com.example.tradehub.mapper.ItemMapper;
+import com.example.tradehub.mapper.AdminItemCategoryMapper;
+import com.example.tradehub.mapper.AdminItemMapper;
 import com.example.tradehub.result.PageResult;
-import com.example.tradehub.service.ItemCategoryService;
+import com.example.tradehub.service.AdminItemCategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
 @RequiredArgsConstructor
-public class ItemCategoryServiceImpl extends ServiceImpl<ItemCategoryMapper, ItemCategory> implements ItemCategoryService {
-    private final ItemCategoryMapper itemCategoryMapper;
-    private final ItemMapper itemMapper;
+public class AdminItemCategoryServiceImpl extends ServiceImpl<AdminItemCategoryMapper, ItemCategory> implements AdminItemCategoryService {
+    private final AdminItemCategoryMapper itemCategoryMapper;
+    private final AdminItemMapper itemMapper;
     @Override
     public PageResult<ItemCategory> pageQuery(int page, int pageSize, String name) {
         Page<ItemCategory> categoryPage = new Page<>(page , pageSize);
